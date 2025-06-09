@@ -1,0 +1,4 @@
+2025-06-10 00:12:22,110 - INFO - Raw data loaded from data/Telco-Customer-Churn.csv. Shape: (7043, 21)
+2025-06-10 00:12:22,174 - INFO - Preprocessing complete. Clean data saved to data/clean_data.csv. Shape: (7043, 20)
+2025-06-10 00:14:18,546 - INFO - Raw data loaded from data/Telco-Customer-Churn.csv. Shape: (7043, 21)
+2025-06-10 00:14:18,622 - INFO - Preprocessing complete. Clean data saved to data/clean_data.csv. Shape: (7043, 20)
