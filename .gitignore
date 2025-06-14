@@ -7,3 +7,6 @@ data/clean_data.csv
 # Fichiers de configuration ou secrets locaux
 .env
 *.env
+
+# Ignorer le repo mlruns
+mlruns/*
