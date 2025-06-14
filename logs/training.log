@@ -1,14 +1,7 @@
-2025-06-10 00:12:55,444 - INFO - Mode: DEBUG – train/test split 80/20
-2025-06-10 00:12:55,457 - INFO - Scaler saved to models\scaler.pkl
-2025-06-10 00:12:55,479 - INFO - Baseline model saved to models/baseline_model.pkl
-2025-06-10 00:12:55,481 - INFO - Baseline accuracy: 0.7398
-2025-06-10 00:12:55,723 - INFO - XGBoost model saved to models/xgb_model.pkl
-2025-06-10 00:12:55,727 - INFO - XGBoost accuracy: 0.7813
-2025-06-10 00:12:55,727 - INFO - Training process completed.
-2025-06-10 00:14:20,409 - INFO - Mode: DEBUG – train/test split 80/20
-2025-06-10 00:14:20,414 - INFO - Scaler saved to models\scaler.pkl
-2025-06-10 00:14:20,425 - INFO - Baseline model saved to models/baseline_model.pkl
-2025-06-10 00:14:20,426 - INFO - Baseline accuracy: 0.7398
-2025-06-10 00:14:20,669 - INFO - XGBoost model saved to models/xgb_model.pkl
-2025-06-10 00:14:20,672 - INFO - XGBoost accuracy: 0.7813
-2025-06-10 00:14:20,672 - INFO - Training process completed.
+2025-06-14 16:41:08,036 - INFO - Mode: DEBUG – train/test split 80/20
+2025-06-14 16:41:08,043 - INFO - Scaler saved to models\scaler.pkl
+2025-06-14 16:41:08,060 - INFO - Baseline model saved to models/baseline_model.pkl
+2025-06-14 16:41:08,062 - INFO - Baseline accuracy: 0.7398
+2025-06-14 16:41:08,339 - INFO - XGBoost model saved to models/xgb_model.pkl
+2025-06-14 16:41:08,343 - INFO - XGBoost accuracy: 0.7813
+2025-06-14 16:41:08,343 - INFO - Training process completed.
