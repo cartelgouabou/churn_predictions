@@ -6,7 +6,6 @@ import logging
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from xgboost import XGBClassifier
 from sklearn.metrics import balanced_accuracy_score, roc_auc_score, f1_score
 from sklearn.metrics import roc_curve, confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
@@ -31,22 +30,6 @@ def train_baseline(X, y, config):
     model.fit(X, y)
     return model
 
-def train_xgb(X, y, config):
-    model = XGBClassifier(
-        n_estimators=config['n_estimators'],
-        max_depth=config['max_depth'],
-        learning_rate=config['learning_rate'],
-        reg_lambda=config.get('reg_lambda', 1.0),
-        reg_alpha=config.get('reg_alpha', 0.5),
-        gamma=config.get('gamma', 0),
-        subsample=config.get('subsample', 1.0),
-        colsample_bytree=config.get('colsample_bytree', 1.0),
-        scale_pos_weight=config.get('scale_pos_weight', 1.0),
-        eval_metric='logloss',
-        random_state=0
-    )
-    model.fit(X, y)
-    return model
 
 def save_model(model, path, model_name):
     joblib.dump(model, path)
@@ -96,7 +79,7 @@ def main(config_path):
     joblib.dump(scaler, scaler_path)
     logging.info(f"Scaler saved to {scaler_path}")
 
-    with mlflow.start_run(run_name=f'test_artefact_visuel'):
+    with mlflow.start_run(run_name=f'train_baseline_model'):
         mlflow.set_tags(config['mlflow'].get('tags', {}))
 
         log_run_infos()
@@ -104,9 +87,6 @@ def main(config_path):
         # logging dynamique des hyperparamètres
         for param, value in config['baseline_model'].items():
             mlflow.log_param(f"baseline_{param}", value)
-
-        for param, value in config['xgb_model'].items():
-            mlflow.log_param(f"xgb_{param}", value)
 
         # Entraînement Baseline
         baseline_model = train_baseline(X_train_scaled, y_train, config['baseline_model'])
@@ -140,17 +120,7 @@ def main(config_path):
             plt.close()
 
 
-        # Entraînement XGBoost
-        xgb_model = train_xgb(X_train_scaled, y_train, config['xgb_model'])
-        save_model(xgb_model, config['model']['xgb_path'], "XGBoost")
-
-        if mode == 'debug':
-            y_pred_xgb = xgb_model.predict(X_test_scaled)
-            mlflow.log_metric("xgb_model_balanced_accuracy", balanced_accuracy_score(y_test, y_pred_xgb))
-            mlflow.log_metric("xgb_model_auc", roc_auc_score(y_test, y_pred_xgb))
-            mlflow.log_metric("xgb_model_f1", f1_score(y_test, y_pred_xgb))
-
-    logging.info("Training process completed.")
+    logging.info("Training baseline model process completed.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
