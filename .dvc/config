@@ -1,4 +1,4 @@
 [core]
-    remote = storage_remote
-['remote "storage_remote"']
-    url = ../../dvc_data_storage
+    remote = local_storage_remote
+['remote "local_storage_remote"']
+    url = C:/Users/fogac/Documents/dvc_data_storage
