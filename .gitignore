@@ -10,3 +10,6 @@ data/clean_data.csv
 
 # Ignorer le repo mlruns
 mlruns/*
+mlartifacts/*
+
+logs/*

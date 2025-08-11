@@ -1,0 +1,24 @@
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py --config configs/config.yaml
+    deps:
+    - data/Telco-Customer-Churn.csv
+    - src/data_preprocessing.py
+    params:
+    - configs/config.yaml:
+      - preprocessing.target_column
+    outs:
+    - data/clean_data.csv
+    - models/label_encoders.pkl
+  train_xgb:
+    cmd: python src/train_model_xgboost.py --config configs/config.yaml
+    deps:
+    - data/clean_data.csv
+    - src/train_model_xgboost.py
+    params:
+    - configs/config.yaml:
+      - xgb_model.learning_rate
+      - xgb_model.max_depth
+    outs:
+    - models/scaler.pkl
+    - models/xgb_model.pkl

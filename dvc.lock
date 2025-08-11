@@ -1,0 +1,49 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py --config configs/config.yaml
+    deps:
+    - path: data/Telco-Customer-Churn.csv
+      hash: md5
+      md5: 0f9de68e012bd3aed5fa7cdc9fc421af
+      size: 977501
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 3a42bfc8b57c8cb891677b40ccbf19e8
+      size: 3793
+    params:
+      configs/config.yaml:
+        preprocessing.target_column: Churn
+    outs:
+    - path: data/clean_data.csv
+      hash: md5
+      md5: 06f085fcf3f42bace154a1ac3f4a4673
+      size: 354842
+    - path: models/label_encoders.pkl
+      hash: md5
+      md5: 54209b3a02d9a74ec3b5e1fa48625b3f
+      size: 5285
+  train_xgb:
+    cmd: python src/train_model_xgboost.py --config configs/config.yaml
+    deps:
+    - path: data/clean_data.csv
+      hash: md5
+      md5: 06f085fcf3f42bace154a1ac3f4a4673
+      size: 354842
+    - path: src/train_model_xgboost.py
+      hash: md5
+      md5: 94cffb3f066f01ca53c2214540870b3a
+      size: 6620
+    params:
+      configs/config.yaml:
+        xgb_model.learning_rate: 0.6
+        xgb_model.max_depth: 5
+    outs:
+    - path: models/scaler.pkl
+      hash: md5
+      md5: d865a217b65ef0e8c3c8eb4acb6ef1d9
+      size: 1583
+    - path: models/xgb_model.pkl
+      hash: md5
+      md5: 468a171f11752929fba96f4b47cc1ffd
+      size: 452554
