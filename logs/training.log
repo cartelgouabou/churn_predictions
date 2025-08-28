@@ -32,3 +32,15 @@
 2025-07-15 18:13:29,251 - INFO - XGBoost model saved to models/xgb_model.pkl
 2025-07-15 18:13:29,385 - INFO - XGBoost model saved to models/xgb_model.pkl
 2025-07-15 18:13:35,295 - INFO - Training xgb model process completed.
+2025-08-11 20:14:16,925 - INFO - Mode: DEBUG – train/test split 80/20
+2025-08-11 20:14:16,932 - INFO - Scaler saved to models\scaler.pkl
+2025-08-11 20:14:17,743 - INFO - XGBoost model saved to models/xgb_model.pkl
+2025-08-11 20:14:17,897 - INFO - XGBoost model saved to models/xgb_model.pkl
+2025-08-11 20:14:18,045 - INFO - XGBoost model saved to models/xgb_model.pkl
+2025-08-11 20:14:25,678 - INFO - Training xgb model process completed.
+2025-08-11 20:15:12,311 - INFO - Mode: DEBUG – train/test split 80/20
+2025-08-11 20:15:12,318 - INFO - Scaler saved to models\scaler.pkl
+2025-08-11 20:15:13,163 - INFO - XGBoost model saved to models/xgb_model.pkl
+2025-08-11 20:15:13,308 - INFO - XGBoost model saved to models/xgb_model.pkl
+2025-08-11 20:15:13,450 - INFO - XGBoost model saved to models/xgb_model.pkl
+2025-08-11 20:15:19,698 - INFO - Training xgb model process completed.

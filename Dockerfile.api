@@ -1,0 +1,39 @@
+# Image de base
+FROM python:3.12.10-slim
+
+# mêmes variables d'env que "en haut" (infer), + flags pip
+# (on garde PYTHONUNBUFFERED=1 côté API pour des logs non bufferisés)
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# paquet minimal (même logique que l'infer)
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# user non-root (même création/UID que l'infer pour éviter les problèmes de permissions sur les volumes)
+RUN useradd -m -u 1000 appuser
+USER appuser
+
+# répertoire de travail
+WORKDIR /app
+
+# deps (même pattern que l'infer : on garde le nom "requirements-api.txt")
+COPY --chown=appuser:appuser requirements-api.txt /app/requirements-api.txt
+RUN pip install --user --no-cache-dir -r /app/requirements-api.txt
+ENV PATH=/home/appuser/.local/bin:$PATH
+
+# code
+COPY --chown=appuser:appuser src/api_from_output.py /app/api_from_output.py
+
+# volume monté à l'exécution
+RUN mkdir -p /app/outputs
+ENV OUTPUT_DIR=/app/outputs
+ENV PRED_FILE_PATTERN=predictions_*.csv
+
+# port HTTP de l'API
+EXPOSE 8000
+
+# même logique que l'infer : ENTRYPOINT fixe le binaire
+ENTRYPOINT ["uvicorn", "api_from_output:app", "--host", "0.0.0.0", "--port", "8000"]

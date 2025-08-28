@@ -1,0 +1,21 @@
+# VCS / ICE
+.git
+.vscode
+__pycache__/
+*.pyc
+*.pyo
+
+# Données & artefacts
+data/*
+models*
+outputs/*
+mlruns/*
+artifacts/*
+
+# Environnements
+.venv-churn/
+.venv/
+.venv*/
+.env
+.DS_Store
+.dvc

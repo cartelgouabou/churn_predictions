@@ -3,3 +3,10 @@
 2025-07-15 18:42:25,709 - INFO - Modèle chargé depuis models:/CustomerChurnModelXgboost/4.
 2025-07-15 18:42:32,167 - INFO - Prétraitement des nouvelles données effectué.
 2025-07-15 18:42:32,174 - INFO - Prédictions sauvegardées dans outputs/predictions.csv.
+2025-08-16 21:09:08,413 - ERROR - Une erreur s'est produite lors de la prédiction : module 'ntpath' has no attribute 'joint'
+2025-08-16 21:10:15,922 - ERROR - Une erreur s'est produite lors de la prédiction : 'DataFrame' object has no attribute 'cooy'
+2025-08-16 21:10:42,335 - INFO - Prédictions enregistrées à ./outputs\predictions_20250816_211042.csv
+2025-08-17 23:33:50,382 - INFO - PrÃ©dictions enregistrÃ©es Ã  /app/outputs/predictions_20250817_233350.csv
+2025-08-17 23:56:57,534 - ERROR - Une erreur s'est produite lors de la prÃ©diction : [Errno 2] No such file or directory: '/app/data/raw_data_churn_test.csv'
+2025-08-17 23:58:54,120 - INFO - PrÃ©dictions enregistrÃ©es Ã  /app/outputs/predictions_20250817_235854.csv
+2025-08-18 00:15:21,503 - INFO - PrÃ©dictions enregistrÃ©es Ã  /app/outputs/predictions_20250818_001521.csv

@@ -1,0 +1,26 @@
+FROM python:3.12.10-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1\
+PYTHONBUFFERED=1\
+PIP_NO_CACHE_DIR=1\
+PIP_DISABLE_PIP_VERSION_CHECK=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates\
+    && rm -rf /var/lib/apt/lists/*
+
+RUN useradd -m -u 1000 appuser
+USER appuser
+
+WORKDIR /app
+
+COPY --chown=appuser:appuser requirements-infer.txt /app/requirements-infer.txt
+RUN pip install --user --no-cache-dir -r requirements-infer.txt
+ENV PATH=/home/appuser/.local/bin:$PATH
+
+COPY --chown=appuser:appuser src/predict.py /app/predict.py
+RUN mkdir -p /app/data /app/logs /app/models /app/outputs
+
+ENTRYPOINT [ "python", "/app/predict.py"]
+CMD [ "--input_csv", "/app/data/raw_data_churn_test.csv",\ 
+      "--artifacts_dir", "/app/models",\
+      "--output_dir", "/app/outputs" ]

@@ -1,0 +1,9 @@
+customerID,gender,SeniorCitizen,Partner,Dependents,tenure,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges
+NEW001,Male,0,No,Yes,29,No,No,Fiber optic,No,No,Yes,No internet service,No,No,One year,No,Credit card (automatic),33.09,7422.36
+NEW002,Female,1,Yes,No,49,Yes,No phone service,No,No,No,No internet service,Yes,No internet service,No,One year,No,Mailed check,36.38,3193.67
+NEW003,Female,1,Yes,No,21,No,No,Fiber optic,Yes,Yes,Yes,No,No internet service,No,Month-to-month,Yes,Bank transfer (automatic),66.5,687.94
+NEW004,Female,1,No,Yes,57,Yes,No,DSL,No,Yes,No,No,No,No internet service,One year,Yes,Mailed check,30.48,156.99
+NEW005,Female,0,Yes,No,8,No,No phone service,Fiber optic,No,Yes,No,No,No internet service,Yes,One year,No,Credit card (automatic),57.85,5148.15
+NEW006,Male,0,No,Yes,54,No,Yes,No,Yes,No internet service,Yes,Yes,No internet service,No internet service,One year,No,Electronic check,87.57,6027.47
+NEW007,Female,1,No,Yes,39,No,No,DSL,No,No internet service,Yes,No internet service,Yes,No internet service,Two year,Yes,Credit card (automatic),106.79,4379.65
+NEW008,Female,1,No,Yes,71,Yes,No,DSL,No,No,No,No,No internet service,Yes,Month-to-month,No,Bank transfer (automatic),93.74,961.09

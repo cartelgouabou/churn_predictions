@@ -1,0 +1,36 @@
+# Image de base
+FROM python:3.12.10-slim
+
+# mêmes variables d'env que les autres images + flags pip
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# paquet minimal (cohérent avec infer/api)
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# user non-root avec le même UID (1000) que les autres images pour harmoniser les permissions de volumes
+RUN useradd -m -u 1000 appuser
+USER appuser
+
+# répertoire de travail
+WORKDIR /app
+
+# deps (même pattern de nommage que les autres Dockerfiles)
+COPY --chown=appuser:appuser requirements-streamlit.txt /app/requirements-streamlit.txt
+RUN pip install --user --no-cache-dir -r /app/requirements-streamlit.txt
+ENV PATH=/home/appuser/.local/bin:$PATH
+
+# code
+COPY --chown=appuser:appuser src/streamlit_app.py /app/app.py
+
+# pour atteindre l'API locale depuis Docker Desktop
+ENV API_BASE=http://host.docker.internal:8000   
+
+# port de l'app Streamlit
+EXPOSE 8501
+
+# même logique que les autres images : ENTRYPOINT fixe le binaire/commande
+ENTRYPOINT ["streamlit", "run", "/app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]

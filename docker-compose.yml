@@ -1,0 +1,24 @@
+services:
+  api:
+    image: churn-api-from-output:0.1
+    container_name: churn_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - churn_outputs:/app/outputs:ro
+    restart: unless-stopped
+
+  streamlit:
+    image: churn-streamlit-client:0.1
+    container_name: churn_streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      -API_BASE: http://api:8000
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  churn_outputs:
+    external: true
